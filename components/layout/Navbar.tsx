@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, X } from "lucide-react";
+import { ArrowDownToLine, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { navLinks, profile } from "@/data/profile";
 import { ThemeToggle } from "./ThemeToggle";
@@ -81,6 +81,14 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <a
+            href={profile.resumeUrl}
+            download
+            className="hidden h-10 items-center gap-2 rounded-full border border-border px-4 text-sm font-medium transition-colors hover:border-accent hover:text-accent lg:inline-flex"
+          >
+            <ArrowDownToLine className="size-4" aria-hidden="true" />
+            Resume
+          </a>
           <ThemeToggle />
           <button
             type="button"

@@ -1,6 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { ArrowDownToLine, FolderGit2, Mail, MapPin } from "lucide-react";
+import { experience } from "@/data/experience";
 import { profile } from "@/data/profile";
 import { Avatar } from "@/components/ui/Avatar";
 import { GitHubIcon, LinkedInIcon } from "@/components/ui/BrandIcons";
@@ -13,7 +14,19 @@ export function Hero() {
   // Show the real photo only if /public/profile.jpg exists; otherwise initials.
   const hasPhoto = existsSync(join(process.cwd(), "public", "profile.jpg"));
 
+  const current = experience[0];
+
   return (
+    <div className="relative isolate overflow-x-clip">
+      {/* Subtle grid + accent glow, fading out toward the bottom */}
+      <div
+        aria-hidden="true"
+        className="bg-grid pointer-events-none absolute inset-x-0 top-0 -z-10 h-[40rem]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-[48rem] max-w-full -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+      />
     <section
       id="top"
       aria-labelledby="hero-heading"
@@ -21,13 +34,20 @@ export function Hero() {
     >
       <div className="flex flex-col-reverse items-center gap-12 md:flex-row md:justify-between md:gap-16">
         <Reveal className="w-full text-center md:text-left">
-          <p className="inline-flex items-center gap-2 text-sm text-muted">
+          <p className="mx-auto flex w-fit items-center gap-2 rounded-full border border-border bg-surface/80 px-3 py-1 text-xs text-muted backdrop-blur md:mx-0">
+            <span className="relative flex size-2" aria-hidden="true">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:animate-none" />
+              <span className="relative inline-flex size-2 rounded-full bg-accent" />
+            </span>
+            Currently at {current.company}
+          </p>
+          <p className="mt-5 flex items-center justify-center gap-2 text-sm text-muted md:justify-start">
             <MapPin className="size-4" aria-hidden="true" />
             {profile.location}
           </p>
           <h1
             id="hero-heading"
-            className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl"
+            className="mt-3 text-5xl font-semibold tracking-tighter sm:text-6xl lg:text-7xl"
           >
             {profile.name}
           </h1>
@@ -95,5 +115,6 @@ export function Hero() {
         </Reveal>
       </div>
     </section>
+    </div>
   );
 }

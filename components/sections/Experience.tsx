@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/Section";
 
 export function Experience() {
   return (
-    <Section id="experience" eyebrow="Experience" title="Where I have worked">
+    <Section id="experience" index="02" eyebrow="Experience" title="Where I have worked">
       <ol className="relative ml-2 border-l border-border">
         {experience.map((job) => (
           <li key={`${job.company}-${job.period}`} className="pb-12 pl-8 last:pb-0">

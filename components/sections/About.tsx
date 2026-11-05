@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/Section";
 
 export function About() {
   return (
-    <Section id="about" eyebrow="About" title="Career objective">
+    <Section id="about" index="01" eyebrow="About" title="Career objective">
       <Reveal>
         <p className="max-w-3xl text-lg leading-relaxed text-muted">
           {profile.objective}

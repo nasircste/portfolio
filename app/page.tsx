@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { About } from "@/components/sections/About";
 import { Competitive } from "@/components/sections/Competitive";
 import { Contact } from "@/components/sections/Contact";
@@ -18,6 +19,7 @@ export default function Home() {
       >
         Skip to content
       </a>
+      <ScrollProgress />
       <Navbar />
       <main id="main">
         <Hero />

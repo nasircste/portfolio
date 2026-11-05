@@ -7,6 +7,7 @@ export function EducationResearch() {
   return (
     <Section
       id="education"
+      index="06"
       eyebrow="Education"
       title="Education and research"
     >
