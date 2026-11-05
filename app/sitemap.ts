@@ -10,5 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    {
+      url: `${siteUrl}/play`,
+      lastModified: "2026-11-01",
+      changeFrequency: "yearly",
+      priority: 0.4,
+    },
   ];
 }
