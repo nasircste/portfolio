@@ -3,18 +3,27 @@ import { projects } from "@/data/projects";
 import { Chip } from "@/components/ui/Chip";
 import { GitHubIcon } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { Section } from "@/components/ui/Section";
 
 export function Projects() {
+  // With an odd number of regular cards, let the last one span the full row
+  const oddRest = projects.filter((p) => !p.featured).length % 2 === 1;
+
   return (
-    <Section id="projects" eyebrow="Projects" title="Things I have built">
+    <Section id="projects" index="03" eyebrow="Projects" title="Things I have built">
       <ul className="grid gap-5 md:grid-cols-2">
         {projects.map((project, i) => (
           <li
             key={project.title}
-            className={project.featured ? "md:col-span-2" : undefined}
+            className={
+              project.featured || (oddRest && i === projects.length - 1)
+                ? "md:col-span-2"
+                : undefined
+            }
           >
             <Reveal delay={(i % 2) * 0.08} className="h-full">
+              <TiltCard>
               <article
                 className={`flex h-full flex-col rounded-2xl border bg-surface transition-colors hover:border-accent ${
                   project.featured
@@ -84,6 +93,7 @@ export function Projects() {
                   </div>
                 )}
               </article>
+              </TiltCard>
             </Reveal>
           </li>
         ))}

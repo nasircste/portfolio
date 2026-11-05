@@ -6,12 +6,14 @@ import {
   platforms,
 } from "@/data/competitive";
 import { Reveal } from "@/components/ui/Reveal";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { Section } from "@/components/ui/Section";
 
 export function Competitive() {
   return (
     <Section
       id="coding"
+      index="05"
       eyebrow="Competitive Programming"
       title="Problem solving"
     >
@@ -32,6 +34,7 @@ export function Competitive() {
         {platforms.map((p, i) => (
           <li key={p.name}>
             <Reveal delay={i * 0.06} className="h-full">
+              <TiltCard>
               <a
                 href={p.url}
                 target="_blank"
@@ -61,6 +64,7 @@ export function Competitive() {
                   </span>
                 </span>
               </a>
+              </TiltCard>
             </Reveal>
           </li>
         ))}
