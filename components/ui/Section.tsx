@@ -14,10 +14,10 @@ export function Section({ id, index, eyebrow, title, children }: SectionProps) {
     <section
       id={id}
       aria-labelledby={`${id}-heading`}
-      className="mx-auto w-full max-w-5xl px-5 py-20 sm:px-8 sm:py-28"
+      className="mx-auto w-full max-w-[1400px] px-5 py-20 sm:px-10 sm:py-28 lg:px-24"
     >
       <Reveal>
-        <p className="flex items-center gap-3 text-sm font-medium uppercase tracking-widest text-accent">
+        <p className="flex items-center gap-3 text-sm font-medium uppercase tracking-[0.25em] text-accent">
           <span className="font-mono" aria-hidden="true">
             {index}
           </span>
@@ -26,7 +26,7 @@ export function Section({ id, index, eyebrow, title, children }: SectionProps) {
         </p>
         <h2
           id={`${id}-heading`}
-          className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl"
+          className="mt-4 text-4xl font-medium uppercase leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl"
         >
           {title}
         </h2>
