@@ -11,7 +11,7 @@ export const profile = {
   email: "nasircste15@gmail.com",
   github: "https://github.com/nasircste",
   // TODO: replace REPLACE_ME with your real LinkedIn profile slug before deploying.
-  linkedin: "https://www.linkedin.com/in/REPLACE_ME",
+  linkedin: "https://www.linkedin.com/in/nasir-ahmed-666760352/",
 
   // Place these files in /public (resume.pdf, profile.jpg).
   resumeUrl: "/resume.pdf",
