@@ -25,7 +25,11 @@ export function Hero() {
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-80 w-[48rem] max-w-full -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+        className="hero-glow pointer-events-none absolute inset-x-0 top-0 -z-10 h-[42rem]"
+      />
+      <div
+        aria-hidden="true"
+        className="glow-ring pointer-events-none absolute -right-48 top-6 -z-10 hidden size-[40rem] rounded-full lg:block"
       />
     <section
       id="top"
@@ -51,8 +55,10 @@ export function Hero() {
           >
             {profile.name}
           </h1>
-          <p className="mt-3 text-xl font-medium text-accent sm:text-2xl">
-            {profile.title}
+          <p className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+            <span className="text-gradient inline-block pb-1">
+              {profile.title}
+            </span>
           </p>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted md:mx-0">
             {profile.intro}
@@ -61,7 +67,7 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 md:justify-start">
             <a
               href="#projects"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-accent px-6 text-sm font-medium text-accent-foreground transition-opacity hover:opacity-90"
+              className="bg-brand inline-flex h-11 items-center gap-2 rounded-full px-6 text-sm font-medium shadow-lg shadow-[#7c3aed]/30 transition-[filter] hover:brightness-110"
             >
               <FolderGit2 className="size-4" aria-hidden="true" />
               View Projects

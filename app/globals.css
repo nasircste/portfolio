@@ -3,24 +3,32 @@
 /* Class-based dark mode (next-themes toggles the `dark` class on <html>) */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Palette: deep navy-black, with a blue -> violet -> magenta gradient accent */
 :root {
   --background: #ffffff;
-  --foreground: #18181b;
-  --muted: #52525b;
-  --border: #e4e4e7;
-  --surface: #f4f4f5;
-  --accent: #4f46e5;
+  --foreground: #0b0d1f;
+  --muted: #4f567a;
+  --border: #e2e4f4;
+  --surface: #f5f6ff;
+  --accent: #6d4aff;
   --accent-foreground: #ffffff;
+  /* gradient stops (used by .text-gradient and glows) */
+  --g1: #2563eb;
+  --g2: #7c3aed;
+  --g3: #c026d3;
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --muted: #a1a1aa;
-  --border: #27272a;
-  --surface: #18181b;
-  --accent: #818cf8;
-  --accent-foreground: #09090b;
+  --background: #05060f;
+  --foreground: #f4f6ff;
+  --muted: #9aa1c4;
+  --border: #1d2040;
+  --surface: #0b0d1e;
+  --accent: #8b7cff;
+  --accent-foreground: #ffffff;
+  --g1: #4f8bff;
+  --g2: #9b6bff;
+  --g3: #e46bff;
 }
 
 @theme inline {
@@ -71,4 +79,33 @@ body {
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 70% 100% at 50% 0%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 100% at 50% 0%, #000 30%, transparent 75%);
+}
+
+/* Gradient headline text (blue -> violet -> magenta) */
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--g1), var(--g2) 55%, var(--g3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Gradient surface for primary buttons and badges. Stops are dark enough for white text (AA). */
+.bg-brand {
+  background-image: linear-gradient(135deg, #2563eb, #7c3aed 70%, #9333ea);
+  color: #ffffff;
+}
+
+/* Soft colour wash behind the hero */
+.hero-glow {
+  background:
+    radial-gradient(40rem 22rem at 15% 0%, color-mix(in srgb, var(--g1) 18%, transparent), transparent 70%),
+    radial-gradient(36rem 26rem at 88% 25%, color-mix(in srgb, var(--g2) 22%, transparent), transparent 70%);
+}
+
+/* Big neon ring behind the avatar */
+.glow-ring {
+  border: 1px solid color-mix(in srgb, var(--g1) 45%, transparent);
+  box-shadow:
+    0 0 90px -10px color-mix(in srgb, var(--g2) 50%, transparent),
+    inset 0 0 90px -20px color-mix(in srgb, var(--g1) 40%, transparent);
 }

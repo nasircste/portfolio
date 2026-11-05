@@ -32,7 +32,7 @@ export function Projects() {
                 }`}
               >
                 {project.featured && (
-                  <p className="mb-4 inline-flex w-fit rounded-full bg-accent px-3 py-1 text-xs font-medium uppercase tracking-wider text-accent-foreground">
+                  <p className="bg-brand mb-4 inline-flex w-fit rounded-full px-3 py-1 text-xs font-medium uppercase tracking-wider">
                     Featured
                   </p>
                 )}

@@ -53,7 +53,11 @@ export function HeroOrbit() {
     return () => io.disconnect();
   }, []);
 
-  const color = resolvedTheme === "dark" ? "#818cf8" : "#4f46e5";
+  // blue, violet, magenta (matches the --g1/--g2/--g3 gradient)
+  const colors: [string, string, string] =
+    resolvedTheme === "dark"
+      ? ["#4f8bff", "#9b6bff", "#e46bff"]
+      : ["#2563eb", "#7c3aed", "#c026d3"];
 
   return (
     <div
@@ -64,7 +68,7 @@ export function HeroOrbit() {
       {supported && (
         <SceneBoundary>
           <OrbitScene
-            color={color}
+            colors={colors}
             animate={!reduceMotion}
             active={visible}
           />

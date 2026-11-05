@@ -4,8 +4,10 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef } from "react";
 import type { Group } from "three";
 
+type Colors = [string, string, string];
+
 type SceneProps = {
-  color: string;
+  colors: Colors;
   animate: boolean;
   pointer: React.RefObject<{ x: number; y: number }>;
 };
@@ -15,7 +17,8 @@ type SceneProps = {
 const RING_A = 1.2;
 const RING_B = 1.33;
 
-function Scene({ color, animate, pointer }: SceneProps) {
+function Scene({ colors, animate, pointer }: SceneProps) {
+  const [blue, violet, magenta] = colors;
   const root = useRef<Group>(null);
   const core = useRef<Group>(null);
   const ringA = useRef<Group>(null);
@@ -65,7 +68,7 @@ function Scene({ color, animate, pointer }: SceneProps) {
       <group ref={core}>
         <mesh>
           <icosahedronGeometry args={[1.12, 1]} />
-          <meshBasicMaterial color={color} wireframe transparent opacity={0.28} />
+          <meshBasicMaterial color={violet} wireframe transparent opacity={0.3} />
         </mesh>
       </group>
 
@@ -74,11 +77,11 @@ function Scene({ color, animate, pointer }: SceneProps) {
         <group ref={ringA}>
           <mesh>
             <torusGeometry args={[RING_A, 0.006, 8, 160]} />
-            <meshBasicMaterial color={color} transparent opacity={0.55} />
+            <meshBasicMaterial color={blue} transparent opacity={0.7} />
           </mesh>
           <mesh position={[RING_A, 0, 0]}>
             <sphereGeometry args={[0.055, 16, 16]} />
-            <meshBasicMaterial color={color} />
+            <meshBasicMaterial color={magenta} />
           </mesh>
         </group>
       </group>
@@ -88,15 +91,15 @@ function Scene({ color, animate, pointer }: SceneProps) {
         <group ref={ringB}>
           <mesh>
             <torusGeometry args={[RING_B, 0.005, 8, 160]} />
-            <meshBasicMaterial color={color} transparent opacity={0.35} />
+            <meshBasicMaterial color={violet} transparent opacity={0.5} />
           </mesh>
           <mesh position={[RING_B, 0, 0]}>
             <sphereGeometry args={[0.04, 16, 16]} />
-            <meshBasicMaterial color={color} />
+            <meshBasicMaterial color={blue} />
           </mesh>
           <mesh position={[-RING_B, 0, 0]}>
             <sphereGeometry args={[0.03, 16, 16]} />
-            <meshBasicMaterial color={color} transparent opacity={0.8} />
+            <meshBasicMaterial color={magenta} transparent opacity={0.85} />
           </mesh>
         </group>
       </group>
@@ -111,7 +114,7 @@ function Scene({ color, animate, pointer }: SceneProps) {
             />
           </bufferGeometry>
           <pointsMaterial
-            color={color}
+            color={blue}
             size={0.022}
             sizeAttenuation
             transparent
@@ -124,12 +127,12 @@ function Scene({ color, animate, pointer }: SceneProps) {
 }
 
 type OrbitSceneProps = {
-  color: string;
+  colors: Colors;
   animate: boolean;
   active: boolean;
 };
 
-export default function OrbitScene({ color, animate, active }: OrbitSceneProps) {
+export default function OrbitScene({ colors, animate, active }: OrbitSceneProps) {
   const pointer = useRef({ x: 0, y: 0 });
 
   // Track the mouse across the whole window (the canvas itself ignores pointer events)
@@ -153,7 +156,7 @@ export default function OrbitScene({ color, animate, active }: OrbitSceneProps) 
       gl={{ alpha: true, antialias: true, powerPreference: "low-power" }}
       style={{ pointerEvents: "none" }}
     >
-      <Scene color={color} animate={animate} pointer={pointer} />
+      <Scene colors={colors} animate={animate} pointer={pointer} />
     </Canvas>
   );
 }

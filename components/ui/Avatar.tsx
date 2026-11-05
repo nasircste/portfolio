@@ -22,11 +22,11 @@ export function Avatar({ src, initials, alt, hasPhoto }: AvatarProps) {
       {/* Soft accent glow behind the photo */}
       <div
         aria-hidden="true"
-        className="absolute -inset-6 -z-20 rounded-full bg-accent/15 blur-3xl"
+        className="bg-brand absolute -inset-6 -z-20 rounded-full opacity-30 blur-3xl"
       />
       <HeroOrbit />
 
-      <div className="relative size-full overflow-hidden rounded-full border border-border bg-surface shadow-xl shadow-accent/10 ring-4 ring-background">
+      <div className="relative size-full overflow-hidden rounded-full border border-border bg-surface shadow-xl shadow-[#7c3aed]/20 ring-4 ring-background">
         {showPhoto ? (
           <Image
             src={src}
