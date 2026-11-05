@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nasir Ahmed | Portfolio
 
-## Getting Started
+Single-page developer portfolio built with Next.js (App Router, TypeScript), Tailwind CSS and Framer Motion.
+Light and dark theme, fully responsive, no backend.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run lint
+npm run build && npm start   # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Requires Node.js 20.9 or newer.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Edit content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All text lives in typed files under [`data/`](data). You should not need to touch components.
 
-## Learn More
+| File | What it controls |
+| --- | --- |
+| `data/profile.ts` | Name, title, location, intro, email, GitHub and LinkedIn links, career objective, stat chips, nav links |
+| `data/experience.ts` | Experience timeline |
+| `data/projects.ts` | Project cards (`featured: true` makes the large first card) |
+| `data/skills.ts` | Skill groups |
+| `data/competitive.ts` | Platform stats, "also solved on" list, achievements |
+| `data/education.ts` | Education, thesis, spoken languages |
 
-To learn more about Next.js, take a look at the following resources:
+## Before you deploy (checklist)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **LinkedIn**: replace `REPLACE_ME` in `data/profile.ts` (search for `TODO`).
+2. **Photo**: add `public/profile.jpg`. Until it exists, an initials avatar is shown.
+3. **Resume**: add `public/resume.pdf` (the "Download Resume" button links to it).
+4. **Site URL** (optional): set `NEXT_PUBLIC_SITE_URL` (e.g. `https://yourname.com`) in Vercel if you add a custom domain. Without it, Vercel's production URL is used automatically for the Open Graph and sitemap URLs.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deploy to Vercel
 
-## Deploy on Vercel
+1. Push this repo to GitHub (public).
+2. Go to <https://vercel.com/new>, sign in with GitHub and import the repo.
+3. Keep the defaults (framework preset: Next.js, no environment variables needed) and click **Deploy**.
+4. Every later `git push` to `main` redeploys automatically.
+5. Optional: add a custom domain under Project Settings > Domains.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+After deploying, test the link preview with the
+[LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) (it caches previews, so re-inspect after changes).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+```
+app/            layout, page, global styles, OG image, favicon, robots, sitemap
+components/
+  layout/       Navbar, ThemeToggle, Footer
+  sections/     Hero, About, Experience, Projects, Skills, Competitive, EducationResearch, Contact
+  ui/           Section, Reveal (scroll animation), Chip, Avatar, brand icons
+data/           all editable content
+public/         profile.jpg and resume.pdf (you add these)
+```
+
+## Notes
+
+- This Next.js version has `cacheComponents` enabled. Reading the current time during render needs `use cache`
+  (see `components/layout/Footer.tsx`), and `app/sitemap.ts` uses a fixed `lastModified` date for the same reason.
+- Animations respect `prefers-reduced-motion`.
