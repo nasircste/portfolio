@@ -48,14 +48,30 @@ After deploying, test the link preview with the
 ## Project structure
 
 ```
-app/            layout, page, global styles, OG image, favicon, robots, sitemap
+app/            layout, home page, /play (chess bot), global styles, OG image, favicon, robots, sitemap
 components/
-  layout/       Navbar, ThemeToggle, Footer
-  sections/     Hero, About, Experience, Projects, Skills, Competitive, EducationResearch, Contact
-  ui/           Section, Reveal (scroll animation), Chip, Avatar, brand icons
+  layout/       Navbar, SocialRail, ThemeToggle, ScrollProgress, Footer
+  sections/     Hero, About, WhatIDo, Experience, Projects (carousel), TechStack, Competitive,
+                EducationResearch, CallToAction, Contact
+  shell/        Loader (loading screen), Cursor (glow follower), SmoothScroll (Lenis + GSAP)
+  three/        CharacterLayer (scroll choreography), CharacterScene (3D robot), characterState
+  chess/        ChessGame (board UI)
+  ui/           Section, Reveal, TiltCard, TechSphere (3D word sphere), SplitText, RollText, Avatar, ...
 data/           all editable content
-public/         profile.jpg and resume.pdf (you add these)
+lib/            scroll helper, photo check, chess engine (+ web worker)
+public/         profile.jpg, resume.pdf, models/robot.glb
 ```
+
+## 3D and interaction
+
+- **Hero robot:** a 3D character (react-three-fiber) that waves, follows your mouse, moves beside the About text while you scroll, then fades out.
+  It only loads on large screens with a mouse and no reduced-motion preference. Phones, tablets and reduced-motion users see the profile photo instead
+  (no three.js is downloaded for them).
+- **Model:** `public/models/robot.glb` is "RobotExpressive" by Tomás Laulhé (CC0), from the three.js examples. To use your own character, replace the file
+  (keep an animation named `Idle`, and a bone named `Head` if you want head tracking), and adjust the scroll choreography in `components/three/CharacterLayer.tsx`.
+- **Tech stack:** a draggable 3D word sphere (plain DOM + transforms, no WebGL), with the same skills listed as normal text next to it.
+- **Cards:** subtle 3D tilt and cursor spotlight on hover (mouse only).
+- **Chess bot** (`/play`): chess.js plus a small alpha-beta engine in `lib/chess/`, running in a Web Worker. No server needed.
 
 ## Notes
 
