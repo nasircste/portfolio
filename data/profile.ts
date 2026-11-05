@@ -15,6 +15,9 @@ export const profile = {
 
   // Place these files in /public (resume.pdf, profile.jpg).
   resumeUrl: "/resume.pdf",
+
+  // Lines that rotate in the hero (all taken from your experience and skills)
+  heroRoles: ["Full Stack Developer", "Spring Boot Developer", "React & Next.js Developer"],
   photo: "/profile.jpg",
 
   objective:
