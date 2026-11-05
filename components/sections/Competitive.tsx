@@ -13,7 +13,7 @@ export function Competitive() {
   return (
     <Section
       id="coding"
-      index="05"
+      index="06"
       eyebrow="Competitive Programming"
       title="Problem solving"
     >
